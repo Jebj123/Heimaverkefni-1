@@ -1,0 +1,42 @@
+.containerAbout {
+    display: flex;   
+}
+.wrapperAbout {
+    display: grid;
+    grid-template-columns: 1fr 1fr ;
+}
+
+.chatBubble1 {
+    margin-right: 40%;
+    margin-left: 10%;
+    margin-top: 20%;
+    border-radius: 5px;
+    text-align: center;
+    border: 3px solid grey;
+  
+}
+.chatBubble2 {
+    
+    margin-right: 22%;
+    margin-left: 32%;
+    margin-bottom: 10%;
+    border: 3px solid rgb(122, 122, 122);
+    border-radius: 5px;
+    text-align: center;
+    width:40%;
+    
+}
+
+.h2 {
+    text-decoration: underline;
+}
+
+.goodDog {
+    height: 300px;
+    width: 300px;
+    margin-left: 5%;
+    margin-top: 10%;
+    margin-bottom: 4%;
+    border: solid grey 2px;
+    border-radius: 10px;
+}
