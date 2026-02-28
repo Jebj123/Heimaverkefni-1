@@ -1,0 +1,13 @@
+.button {
+    background-color: rgba(228, 79, 221, 0.767);
+}
+
+.button2 {
+    border: 1px solid rgb(160, 9, 135);
+    background-color: black;
+}
+
+.checkBox {
+    border-radius: 20px;
+    width: 10px;
+}

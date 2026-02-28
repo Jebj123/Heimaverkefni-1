@@ -11,6 +11,8 @@ const about = () => {
             </div>
             <div className='chatBubble1'>
                 <h1 className='h2'>Um Okkur</h1>
+                <br />
+                <br />
                 <h2 className='paraAbout'>Erum að safna undirskriftum til að auka lífsgæði Kronos</h2>
             </div>
             

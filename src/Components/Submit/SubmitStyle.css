@@ -22,7 +22,6 @@
     grid-row-end: 2;
     margin-left: 39%;
     margin-bottom: 12%;
-    margin-top: 5%;
     border-radius: 10px;
 }
 .subDog2 {
@@ -33,10 +32,8 @@
     grid-row-end: 2;
     grid-column-start: 3;
     grid-row-end: 4;
-    margin-left: 5%;
-    margin-top: 5%;
-    margin-bottom: 12%;
     border-radius: 10px;
+
 }
 
 .h2{
@@ -46,6 +43,6 @@
     grid-row-end: 2;
 }
 .sumbmitInfo {
-    padding-top: 25%;
+    padding-top: 10%;
      
 }

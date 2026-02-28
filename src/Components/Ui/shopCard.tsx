@@ -1,35 +1,33 @@
-import {
-  Card,
-  CardAction,
-  CardContent,
-  CardDescription,
-  CardFooter,
-  CardHeader,
-  CardTitle,
-} from "@/components/ui/card";
-import {InputName} from "../Input/InputName";
 import { useState } from "react";
-import { InputEmail } from "../Input/InputEmail";
-import "./shopCardStyle.css"
+import { Input } from "./input";
+import { Button } from "./button";
+import { Card, CardAction, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "./card";
 
 export function ShopCard() {
   const [name, setName] = useState("")
   const [email, setEmail] = useState("");
+  const onClick = () => {
+    alert(`Skráður \n Nafn : ${name} \n Email: ${email}`)
+  }
+  
   return (
-  <div>
+  <div className="flex justify-center mb-4">
     <Card>
   <CardHeader>
     <CardTitle>Skráningarform</CardTitle>
     <CardDescription>Endilega Skrifaðu Undir</CardDescription>
     <CardAction></CardAction>
   </CardHeader>
-  <CardContent>
-   <InputName value={name} onChange={(e) => setName(e.target.value)}/>
-   <InputEmail value={email} onChange={(e) => setEmail(e.target.value)}/>
+  <CardContent className="grid grid-cols-1 gap-3">
+   <Input placeholder="name..." value={name} onChange={(e) => setName(e.target.value)}/>
+   <Input placeholder="email..." value={email} onChange={(e) => setEmail(e.target.value)}/>
   </CardContent>
   <CardFooter>
-    <button type="submit"className="submitCardButton"onClick={() => alert("Takk fyrir að skrifa undir!" + "\n" + "Nafn: " + name + "\n" + "Póstfang: "+ email)}>Skráðu þig!</button>
+    <div className="pl-3">
+    <Button  className="flex w-40 text-black"onClick={onClick}>Submit</Button>
+    </div>
   </CardFooter>
+    
 </Card>
 <br />
 </div>
