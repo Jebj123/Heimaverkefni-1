@@ -31,12 +31,13 @@ export function Form() {
     return (
   <div className="flex place-content-center pb-5">
     <Card className="flex w-100 bg-indigo-950">
+      <form onSubmit={onClick}>
         <CardHeader>
     <div className="grid grid-cols-3">
-      <div className="flex bg-white h-0.5 mt-2.5 mr-2 rounded-3xl">
+      <div className="flex bg-white h-0.5 mr-2 rounded-3xl mt-5">
         </div>
-      <CardTitle className="text-white">Skráningarform</CardTitle>
-      <div className="flex bg-white h-0.5 mt-2.5 ml-2 rounded-3xl">
+      <CardTitle className="text-white pb-4 pt-3">Skráningarform</CardTitle>
+      <div className="flex bg-white h-0.5 mt-5 ml-2 rounded-3xl">
       </div>
     </div>
     <CardAction></CardAction>
@@ -61,7 +62,7 @@ export function Form() {
         </SelectGroup>
       </SelectContent>
     </Select>
-    <RadioGroup className="grid grid-cols-6 w-87"
+    <RadioGroup className="grid grid-cols-6 w-87 pb-4"
     onValueChange={(e) =>{
       setSelectedGender(e)
     }}>
@@ -73,10 +74,11 @@ export function Form() {
         <RadioGroupItem value="Other" id="r3" />
     </RadioGroup>
     </div>
+    
   </CardContent>
     <CardFooter>
     <div className="grid gap-3 w-87 place-content-center">
-      <Button className="button w-90 h-15 text-white font-bold py-2 px-4 rounded" onClick={onClick}>Submit</Button>
+      <Button className="button w-90 h-15 text-white font-bold py-2 px-4 rounded" type="submit">Submit</Button>
       <div className="flex flex-wrap justify-center">
       <div className="flexflex bg-white h-0.5 w-30 mt-2.5 mr-2 rounded-3xl">
         </div>
@@ -87,6 +89,7 @@ export function Form() {
       <Button className="button2 w-90 h-15 text-white font-bold py-2 px-4 rounded">Edit</Button>
     </div>
     </CardFooter>
+    </form>
     </Card>
     </div>
     )
