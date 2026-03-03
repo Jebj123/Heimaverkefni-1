@@ -95,7 +95,7 @@ export function Form() {
       <div className="flex bg-white h-0.5 w-30 mt-2.5 ml-2 rounded-3xl">
         </div>
         </div>
-      <Button className="button2 w-90 h-15 text-white font-bold py-2 px-4 rounded" type="reset" onMouseDown={onClear}>Edit</Button>
+      <Button className="button2 w-90 h-15 text-white font-bold py-2 px-4 rounded" type="reset" onMouseDown={onClear}>Clear</Button>
     </div>
     </CardFooter>
     </form>
