@@ -53,10 +53,10 @@ export function Form() {
   </CardHeader>
   <CardContent className="grid grid-cols-1">
     <div className="grid gap-3 w-87 place-content-center ">
-    <Input className="bg-white" placeholder="First Name" value={firstName} onChange={(e) => setFirstName(e.target.value)}/>
-    <Input className="bg-white" placeholder="Last Name" value={lastName} onChange={(e) => setLastName(e.target.value)}/>
-    <Input className="bg-white" placeholder="Email" value={email} onChange={(e) => setEmail(e.target.value)}/>
-    <Input className="bg-white" placeholder="Phonenumber" value={phoneNumber} onChange={(e) => setPhoneNumber(e.target.value)}/>
+    <Input className="bg-white" placeholder="First Name" value={firstName} type="firstName" onChange={(e) => setFirstName(e.target.value)}/>
+    <Input className="bg-white" placeholder="Last Name" value={lastName} type="lastName"onChange={(e) => setLastName(e.target.value)}/>
+    <Input className="bg-white" placeholder="Email" value={email} type="email" onChange={(e) => setEmail(e.target.value)}/>
+    <Input className="bg-white" placeholder="Phonenumber" type="tel"value={phoneNumber} onChange={(e) => setPhoneNumber(e.target.value)}/>
     <Select onValueChange={(e) => {
       setIsSingle(e)
     }}>
@@ -71,7 +71,7 @@ export function Form() {
         </SelectGroup>
       </SelectContent>
     </Select>
-    <RadioGroup className="grid grid-cols-6 w-87 pb-4"
+    <RadioGroup className="grid grid-cols-6 w-87 pb-3 pl-5"
     onValueChange={(e) =>{
       setSelectedGender(e)
     }}>
