@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useRef, useState } from "react";
 import {
   Card,
   CardAction,
@@ -16,26 +16,28 @@ import { Label } from "../Ui/label";
 import { RadioGroup, RadioGroupItem } from "../Ui/radio-group";
 
 export function Form() {
-    const [firstName, setFirstName] = useState("");
-    const [lastName, setLastName] = useState("");
-    const [email, setEmail] = useState("");
-    const [phoneNumber, setPhoneNumber] = useState("")
+    //const [firstName, setFirstName] = useState("");
+    //const [lastName, setLastName] = useState("");
+    //const [email, setEmail] = useState("");
+    //const [phoneNumber, setPhoneNumber] = useState("")
     const [selectedGender, setSelectedGender] = useState("");
     const [isSingle, setIsSingle] = useState("");
-    
+
+    const dataRef = useRef<DataType>({
+      email: "",
+      firstName: "",
+      lastName: "",
+      phoneNumber: ""
+    })
+
     const onClick = () => {
+      const {firstName} = dataRef.current
+      const {lastName} = dataRef.current
+      const {email} = dataRef.current
+      const {phoneNumber} = dataRef.current
       alert(` Nafn : ${firstName} ${lastName} \n Email: ${email} \n Simi: ${phoneNumber} \n Hjúskaparstaða: ${isSingle} \n Kyn: ${selectedGender}`)
     }
-
-    const onClear = () =>{
-      setFirstName("");
-      setLastName("");
-      setEmail("");
-      setPhoneNumber("");
-      setSelectedGender("");
-      setIsSingle("");
-    }
-    
+   
 
     return (
   <div className="flex place-content-center pb-5">
@@ -53,10 +55,10 @@ export function Form() {
   </CardHeader>
   <CardContent className="grid grid-cols-1">
     <div className="grid gap-3 w-87 place-content-center ">
-    <Input className="bg-white" placeholder="First Name" value={firstName} type="firstName" onChange={(e) => setFirstName(e.target.value)}/>
-    <Input className="bg-white" placeholder="Last Name" value={lastName} type="lastName"onChange={(e) => setLastName(e.target.value)}/>
-    <Input className="bg-white" placeholder="Email" value={email} type="email" onChange={(e) => setEmail(e.target.value)}/>
-    <Input className="bg-white" placeholder="Phonenumber" type="number" value={phoneNumber} onChange={(e) => setPhoneNumber(e.target.value)}/>
+    <Input className="bg-white" placeholder="First Name" type="firstName" onChange={(e) => {dataRef.current = ({ ...dataRef.current, firstName: e.target.value});}}/>
+    <Input className="bg-white" placeholder="Last Name" type="lastName"onChange={(e) => {dataRef.current = ({ ...dataRef.current, lastName: e.target.value});}}/>
+    <Input className="bg-white" placeholder="Email" type="email" onChange={(e) => {dataRef.current = ({ ...dataRef.current, email: e.target.value});}}/>
+    <Input className="bg-white" placeholder="Phonenumber" type="number" onChange={(e) => {dataRef.current = ({ ...dataRef.current, phoneNumber: e.target.value});}}/>
     <Select onValueChange={(e) => {
       setIsSingle(e)
     }}>
@@ -95,7 +97,7 @@ export function Form() {
       <div className="flex bg-white h-0.5 w-30 mt-2.5 ml-2 rounded-3xl">
         </div>
         </div>
-      <Button className="button2 w-90 h-15 text-white font-bold py-2 px-4 rounded" type="reset" onMouseDown={onClear}>Clear</Button>
+      <Button className="button2 w-90 h-15 text-white font-bold py-2 px-4 rounded" type="reset">Clear</Button>
     </div>
     </CardFooter>
     </form>
