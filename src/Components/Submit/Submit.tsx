@@ -11,12 +11,11 @@ const Submit = () => {
         return (
     <div className='submit'>
       <h2 className='h2'>Undirskriftarlisti til að gera Kronos að Glaðasta Hunds á Íslandi</h2>
-      <div className='wrapper'>
+      <div className='wrapper grid grid-cols-3 gap-20'>
           <img className='subDog1' src={subDog1} />
+      <Form />
           <img className='subDog2' src={subDog2} />
     <div className='sumbmitInfo'>
-      <ShopCard />
-      <Form />
     </div>
     </div>
     </div>
