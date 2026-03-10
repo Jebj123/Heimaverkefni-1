@@ -104,30 +104,33 @@ export function Form() {
     }, [])
     // TODO: Use the correct state to connect to debounce state
     const [email, setEmail] = useState("");
-    const [debouncedEmail, setDebouncedEmail] = useState(email)
+    const debouncedEmail = useDebounce(email, 200)
 
+    const handleEmailChange = (e) =>{
+      setEmail(e.target.value)
+    }
 
     // Set delay time according to your needs
-    const emailSearchTerm = useDebounce(email, 1000);
     // TODO: Write useEffect to repopulate the localstorage after debounce
     // NOTE: The email has to be present for this to work
-    useEffect(() => {
-    const handler = setTimeout(() => {
-      setDebouncedEmail(email);
-    }, 500);
-
-    return () => {
-      clearTimeout(handler);
-    };
-  }, [email]);
    
     useEffect(() => {
+      values.email = email
     if (debouncedEmail) {
-      console.log("Validating:", debouncedEmail);
-      values.email= debouncedEmail
-      console.log(values.email)
+       if (loadEmailRef.current && loadEmailRef.current.value) {
+        console.log("Validating:", debouncedEmail);
+          const localStorageValue = localStorage.getItem(loadEmailRef.current?.value)
+            if (localStorageValue) {
+                const parsedLocalStorageValue: FormValuesType = JSON.parse(localStorageValue)
+                loadEmailRef.current.value = ''
+                setValues(parsedLocalStorageValue)
+            } else {
+               console.log("No email found")
+            }
+        }
     }
   }, [debouncedEmail]);
+   
 
 
     // TODO: If no email is provided, display only the email input, or some other alternative UX
@@ -247,7 +250,8 @@ export function Form() {
                                     type="email"
                                     ref={loadEmailRef}
                                     placeholder="asdf@ntv.is"
-                                    onChange={(event) => {setEmail(event.target.value)}}
+                                    value={email}
+                                    onChange={handleEmailChange}
                                 />
                             </Field>
                         </FieldGroup>
