@@ -1,7 +1,7 @@
 import "./submitstyle.css"
 import subDog1 from "/src/assets/subDog1.jpg"
 import subDog2 from "/src/assets/subDog2.jpg"
-import { Form } from '../User/Form'
+import { Form } from '../../User/Form'
 
 
 

@@ -2,7 +2,7 @@ import './App.css'
 import {BrowserRouter, Route, Routes} from "react-router-dom"
 import Layout from './Features/Products/Pages/Layout'
 import About from './Features/Products/Pages/About'
-import Submit from './Features/Submit/Submit'
+import Submit from './Features/Products/Pages/Submit'
 
 function App() {
 
