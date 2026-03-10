@@ -27,26 +27,17 @@ import { Field, FieldGroup, FieldSet } from "../Ui/field.tsx";
 
 
     type FormValuesType = {
-      email: string,
       firstName: string,
       lastName: string,
+      email: string,
       phoneNumber: string,
-      isSingle: string 
       selectedGender: string,
+      isSingle: string 
     }
 
 export function Form() {
     // TODO: Remove ref data set, and only use state to keep track of realtime local data (written in input)
-    // NOTE: You might want to detach the email from the data set (since it's used to index the localstorage)
-    const dataRef = useRef<FormValuesType>({
-        firstName: '',
-        lastName: '',
-        email: '',
-        phoneNumber: '',
-        selectedGender: "",
-        isSingle: ""
-    })
-    
+    // NOTE: You might want to detach the email from the data set (since it's used to index the localstorage)   
 
     const [values, setValues] = useState<FormValuesType>({
         firstName: '',
@@ -58,16 +49,15 @@ export function Form() {
     })
    
     const onInputChange = useCallback((key: keyof FormValuesType, value: string) => {
-        dataRef.current[key] = value
+        values[key] = value
     }, [])
-
-      dataRef.current.email = values.email
+  
     const [state, setState] = useState(false)
     
 
     const onClick = () => {
-      const { firstName, email } = dataRef.current
-        localStorage.setItem(email, JSON.stringify(dataRef.current))
+      const { firstName, email } = values
+        localStorage.setItem(email, JSON.stringify(values))
         window.alert(`Hello ${firstName}; email address ${email}`)
     }
    
@@ -88,6 +78,7 @@ export function Form() {
         } else {
             window.alert('Enter email')
         }
+        console.log(values)
     }, [])
 
         const onCreate = useCallback(() => {
@@ -104,7 +95,7 @@ export function Form() {
     }, [])
     // TODO: Use the correct state to connect to debounce state
     const [email, setEmail] = useState("");
-    const debouncedEmail = useDebounce(email, 200)
+    const [debouncedEmail, setDebouncedEmail] = useState(email)
 
     const handleEmailChange = (e) =>{
       setEmail(e.target.value)
@@ -113,24 +104,35 @@ export function Form() {
     // Set delay time according to your needs
     // TODO: Write useEffect to repopulate the localstorage after debounce
     // NOTE: The email has to be present for this to work
-   
+    
     useEffect(() => {
-      values.email = email
+      const timerId = setTimeout (() =>{
+        setDebouncedEmail(email);
+      },500);
+
+      return () => clearTimeout(timerId)
+    },[email]);
+
+    useEffect(() => {
     if (debouncedEmail) {
-       if (loadEmailRef.current && loadEmailRef.current.value) {
-        console.log("Validating:", debouncedEmail);
-          const localStorageValue = localStorage.getItem(loadEmailRef.current?.value)
-            if (localStorageValue) {
+      console.log('Searching for:', debouncedEmail);
+      // Perform search API call here
+      const localStorageValue = localStorage.getItem(email)
+      if (localStorageValue) {
                 const parsedLocalStorageValue: FormValuesType = JSON.parse(localStorageValue)
-                loadEmailRef.current.value = ''
-                setValues(parsedLocalStorageValue)
+                values.firstName = parsedLocalStorageValue.firstName
+                values.lastName = parsedLocalStorageValue.lastName
+                values.email = email
+                values.phoneNumber = parsedLocalStorageValue.phoneNumber
+                values.selectedGender = parsedLocalStorageValue.selectedGender
+                values.isSingle = parsedLocalStorageValue.isSingle
             } else {
-               console.log("No email found")
+                console.log("email not found")
+                values.email = email;
             }
-        }
-    }
+          }
+          console.log(values)
   }, [debouncedEmail]);
-   
 
 
     // TODO: If no email is provided, display only the email input, or some other alternative UX
@@ -162,12 +164,12 @@ export function Form() {
     className="bg-white" 
     placeholder="Last Name" 
     type="lastName"
-    defaultValue={values.lastName}
+    defaultValue={values.firstName}
     onChange={(e) => {onInputChange("lastName", e.target.value)}}/>
     <Input 
     className="bg-white" 
     placeholder="Email" type="email" 
-    defaultValue={debouncedEmail}
+    defaultValue={email}
     readOnly
     onChange={(e) => {onInputChange("email", e.target.value)}}/>
     <Input 
