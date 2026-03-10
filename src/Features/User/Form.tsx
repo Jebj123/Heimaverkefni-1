@@ -7,15 +7,15 @@ import {
   CardFooter,
   CardHeader,
   CardTitle,
-} from "../Ui/card";
-import { Select, SelectContent, SelectGroup, SelectItem, SelectLabel, SelectTrigger, SelectValue } from "../Ui/select";
+} from "../Shared/Components/card.tsx";
+import { Select, SelectContent, SelectGroup, SelectItem, SelectLabel, SelectTrigger, SelectValue } from "../Shared/Components/select.tsx";
 import "./formStyle.css"
-import { Input } from "../Ui/input";
-import { Button } from "../Ui/button";
-import { Label } from "../Ui/label";
-import { RadioGroup, RadioGroupItem } from "../Ui/radio-group";
-import useDebounce from "../Hooks/useDebounce.ts"
-import { Field, FieldGroup, FieldSet } from "../Ui/field.tsx";
+import { Input } from "../Shared/Components/input.tsx";
+import { Button } from "../Shared/Components/button.tsx";
+import { Label } from "../Shared/Components/label.tsx";
+import { RadioGroup, RadioGroupItem } from "../Shared/Components/radio-group.tsx";
+import useDebounce from "../Auth/Hooks/useDebounce.ts"
+import { Field, FieldGroup, FieldSet } from "../Shared/Components/field.tsx";
 
 
     //const [firstName, setFirstName] = useState("");

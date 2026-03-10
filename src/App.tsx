@@ -1,8 +1,8 @@
 import './App.css'
 import {BrowserRouter, Route, Routes} from "react-router-dom"
-import Layout from './Components/Layout/Layout'
-import About from './Components/About/About'
-import Submit from './Components/Submit/Submit'
+import Layout from './Features/Products/Pages/Layout'
+import About from './Features/Products/Pages/About'
+import Submit from './Features/Submit/Submit'
 
 function App() {
 

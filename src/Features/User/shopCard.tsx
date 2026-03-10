@@ -1,7 +1,7 @@
 import { useState } from "react";
-import { Input } from "./input";
-import { Button } from "./button";
-import { Card, CardAction, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "./card";
+import { Input } from "../Shared/Components/input";
+import { Button } from "../Shared/Components/button";
+import { Card, CardAction, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "../Shared/Components/card";
 
 export function ShopCard() {
   const [name, setName] = useState("")
