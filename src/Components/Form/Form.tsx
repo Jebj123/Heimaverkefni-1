@@ -170,7 +170,7 @@ export function Form() {
     className="bg-white" 
     placeholder="Last Name" 
     type="lastName"
-    defaultValue={values.firstName}
+    defaultValue={values.lastName}
     onChange={(e) => {onInputChange("lastName", e.target.value)}}/>
     <Input 
     className="bg-white" 
@@ -231,7 +231,7 @@ export function Form() {
     </form>
     </Card>
     }
-    <div className="flex justify-center pl-10">
+    <div className="flex justify-center">
     {!state &&
     <Card className="flex w-80 pl-3 pr-3">
                 <CardHeader>
