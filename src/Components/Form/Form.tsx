@@ -108,7 +108,7 @@ export function Form() {
     useEffect(() => {
       const timerId = setTimeout (() =>{
         setDebouncedEmail(email);
-      },500);
+      }, 700);
 
       return () => clearTimeout(timerId)
     },[email]);
