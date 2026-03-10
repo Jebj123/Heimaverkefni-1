@@ -119,6 +119,7 @@ export function Form() {
       // Perform search API call here
       const localStorageValue = localStorage.getItem(email)
       if (localStorageValue) {
+                console.log("Email Found in Database")
                 const parsedLocalStorageValue: FormValuesType = JSON.parse(localStorageValue)
                 values.firstName = parsedLocalStorageValue.firstName
                 values.lastName = parsedLocalStorageValue.lastName
@@ -127,8 +128,13 @@ export function Form() {
                 values.selectedGender = parsedLocalStorageValue.selectedGender
                 values.isSingle = parsedLocalStorageValue.isSingle
             } else {
-                console.log("email not found")
+                console.log("email not found please fill out form")
                 values.email = email;
+                values.firstName = ""
+                values.lastName = ""
+                values.phoneNumber = ""
+                values.selectedGender = ""
+                values.isSingle = ""
             }
           }
           console.log(values)
