@@ -2,6 +2,9 @@
     background-color: rgba(228, 79, 221, 0.767);
 }
 
+.button:hover{
+    Border: solid 0.3px rgb(3, 131, 182);
+}
 .button2 {
     border: 1px solid rgb(160, 9, 135);
     background-color: black;

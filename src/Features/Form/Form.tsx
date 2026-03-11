@@ -1,21 +1,18 @@
 import { useCallback, useEffect, useRef, useState } from "react";
 import {
   Card,
-  CardAction,
   CardContent,
-  CardDescription,
-  CardFooter,
-  CardHeader,
-  CardTitle,
 } from "../Shared/Components/card.tsx";
-import { Select, SelectContent, SelectGroup, SelectItem, SelectLabel, SelectTrigger, SelectValue } from "../Shared/Components/select.tsx";
 import "./formStyle.css"
 import { Input } from "../Shared/Components/input.tsx";
 import { Button } from "../Shared/Components/button.tsx";
-import { Label } from "../Shared/Components/label.tsx";
-import { RadioGroup, RadioGroupItem } from "../Shared/Components/radio-group.tsx";
-import useDebounce from "../Auth/Hooks/useDebounce.ts"
 import { Field, FieldGroup, FieldSet } from "../Shared/Components/field.tsx";
+import { FormHeader } from "./Components/FormHeader.tsx";
+import { FormFooter } from "./Components/FormFooter.tsx";
+import { InputField } from "../Components/Field/InputField.tsx";
+import { SelectField } from "../Components/Field/SelectField.tsx";
+import { RadioGroupField } from "../Components/Field/RadioGroupField.tsx";
+import { EmailFormHeader} from "./Components/EmailFormHeader.tsx"
 
 
     //const [firstName, setFirstName] = useState("");
@@ -139,7 +136,7 @@ export function Form() {
           }
           console.log(values)
   }, [debouncedEmail]);
-
+   
 
     // TODO: If no email is provided, display only the email input, or some other alternative UX
 
@@ -148,105 +145,31 @@ export function Form() {
     {state && 
     <Card className="flex w-100 bg-indigo-950">
       <form onSubmit={onClick}>
-        <CardHeader>
-    <div className="grid grid-cols-3">
-      <div className="flex bg-white h-0.5 mr-2 rounded-3xl mt-5">
-        </div>
-      <CardTitle className="text-white pb-4 pt-3">Skráningarform</CardTitle>
-      <div className="flex bg-white h-0.5 mt-5 ml-2 rounded-3xl">
-      </div>
-    </div>
-    <CardAction></CardAction>
-  </CardHeader>
+      <FormHeader value="SkráningarForm" />
   <CardContent className="grid grid-cols-1">
     <div className="grid gap-3 w-87 place-content-center ">
-    <Input 
-    className="bg-white" 
-    placeholder="First Name" 
-    // TODO: Set values to all input fields in the form
-    defaultValue={values.firstName}
-    type="firstName" onChange={(e) => {onInputChange("firstName", e.target.value)}}/>
-    <Input 
-    className="bg-white" 
-    placeholder="Last Name" 
-    type="lastName"
-    defaultValue={values.lastName}
-    onChange={(e) => {onInputChange("lastName", e.target.value)}}/>
-    <Input 
-    className="bg-white" 
-    placeholder="Email" type="email" 
-    defaultValue={email}
-    readOnly
-    onChange={(e) => {onInputChange("email", e.target.value)}}/>
-    <Input 
-    className="bg-white" 
-    placeholder="Phonenumber" 
-    type="number" 
-    defaultValue={values.phoneNumber}
-    onChange={(e) => {onInputChange("phoneNumber", e.target.value)}}/>
-    <Select 
-    defaultValue={values.isSingle}
-    onValueChange={(e) => {
-      onInputChange("isSingle", e)
-    }}>
-      <SelectTrigger className="w-full max-w-90">
-        <SelectValue placeholder="Relationship Status ..." />
-      </SelectTrigger>
-      <SelectContent>
-        <SelectGroup>
-          <SelectLabel className="text-black">Relationship Status</SelectLabel>
-          <SelectItem value="Single" >Single</SelectItem>
-          <SelectItem value="Not Single">Not Single</SelectItem>
-        </SelectGroup>
-      </SelectContent>
-    </Select>
-    <RadioGroup className="grid grid-cols-6 w-87 pb-3 pl-7"
-    defaultValue={values.selectedGender}
-    onValueChange={(e) =>{
-      onInputChange("selectedGender", e)
-    }}>
-        <Label className="text-white" htmlFor="r1">Male:</Label>
-        <RadioGroupItem value="Male" id="r1" />
-        <Label className="text-white" htmlFor="r2">Female:</Label>  
-        <RadioGroupItem value="Female" id="r2" />
-        <Label className="text-white" htmlFor="r3">Other:</Label>
-        <RadioGroupItem value="Other" id="r3" />
-    </RadioGroup>
-    </div>
-    
+    <InputField placeholder="First name" value={values.firstName} onChange={(e) => {onInputChange("firstName", e.target.value)}} />
+    <InputField placeholder="Last name" value={values.lastName} onChange={(e) => {onInputChange("lastName", e.target.value)}} />
+    <InputField placeholder="Email" value={values.email} onChange={(e) => {onInputChange("email", e.target.value)}} />
+    <InputField placeholder="Phonenumber" value={values.phoneNumber} onChange={(e) => {onInputChange("phoneNumber", e.target.value)}} />
+    <SelectField placeholder="isSingle" value={values.isSingle} onChange={(e) => { onInputChange("isSingle", e)}} />
+    <RadioGroupField value={values.selectedGender} onChange={(e) => {onInputChange("selectedGender", e)}} />
+    </div>  
   </CardContent>
-    <CardFooter>
-    <div className="grid gap-3 w-87 place-content-center">
-      <Button className="button w-90 h-15 text-white font-bold py-2 px-4 rounded" type="submit">Submit</Button>
-      <div className="flex flex-wrap justify-center">
-      <div className="flexflex bg-white h-0.5 w-30 mt-2.5 mr-2 rounded-3xl">
-        </div>
-      <CardDescription className="grid">or</CardDescription>
-      <div className="flex bg-white h-0.5 w-30 mt-2.5 ml-2 rounded-3xl">
-        </div>
-        </div>
-      <Button className="button2 w-90 h-15 text-white font-bold py-2 px-4 rounded" type="reset">Clear</Button>
-    </div>
-    </CardFooter>
+    <FormFooter value="or" />
     </form>
     </Card>
     }
     <div className="flex justify-center">
     {!state &&
     <Card className="flex w-80 pl-3 pr-3">
-                <CardHeader>
-                    <div className="flex items-center gap-2">
-                        <div className="grow border h-0"></div>
-                        <CardTitle>Already filled out form?</CardTitle>
-                        <div className="grow border h-0"></div>
-                    </div>
-                </CardHeader>
-                <form
-                    onSubmit={(e) => {
-                        e.preventDefault()
-                        onLoad()
-                    }}
-                    className="w-full"
+        <EmailFormHeader value="Already Filled out form?" />
+            <form
+                onSubmit={(e) => {
+                e.preventDefault()
+                onLoad()
+                }}
+                className="w-full"
                 >
                     <FieldSet>
                         <FieldGroup>
